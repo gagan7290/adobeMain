@@ -1,0 +1,14 @@
+.file{
+    /* background-color: dodgerblue; */
+    /* opacity: 0.3; */
+    border-radius: 12px;
+    background: url("../assets/images/vecteezy_white-blank-paper-3d-illustration_11048552.png");
+    background-position: center;
+    background-size: cover;
+    transform: scale(0.8);
+    transition: transform 0.3s;
+}
+
+.file:hover{
+    transform: scale(1);
+}

@@ -1,0 +1,92 @@
+.heroContainer{
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin-top: 5rem;
+    padding: 0 4rem;
+    flex: 1;
+}
+
+
+.heroContent{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: var(--clr-text-primary);
+    flex: 1;
+    background-color: var(--clr-bg);
+    height: 500px;
+    font-family: var(--ff-content);
+}
+
+
+.heading{
+    font-family: var(--ff-headings);
+    font-size: var(--font-size-xxl);
+}
+
+.heading  div:first-child{
+    letter-spacing: 1px;
+    font-size: calc(var(--font-size-xxl) + 3rem);
+}
+
+.subHeading{
+    font-size: var(--font-size-md);
+    opacity: 0.6;
+}
+
+.ctaBtns{
+    display: flex;
+    gap: 1rem;
+}
+
+.heroIllus{
+    flex: 0;
+    min-width: 800px;
+    background-color: lighgrey;
+    position: relative;
+    height: 100%;
+}
+
+
+/* .hotAirBaloon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 700px;
+    width: auto;
+} */
+
+
+.heroImg{
+    position: absolute;
+    pointer-events: none;
+}
+
+.hotAirBaloon{
+    height: 800px;
+    transform: translateY(-15%);
+}
+
+.skyline{
+    bottom: 0;
+    left: 0;
+    height: 400px;
+    transform: translateX(-15%);
+}
+
+.cloud{
+    height: 800px;
+    transform: translate(0, -50%);
+}
+
+.cloud2{
+    height: 900px;
+    transform: translate(0, -20%);
+}
+
+.moon{
+    height: 500px;
+    left: 0;
+    transform: translate(-50%, 70%);
+}
+
