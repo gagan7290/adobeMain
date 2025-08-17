@@ -10,9 +10,10 @@ export default function Card({id}){
                     <div className={styles.cardDate}>Sat Aug 16, 2025</div>
                 </div>
 
-                <div className={styles.cardImg} style={{
-                    backgroundImage: `url(/src/assets/images/carousel/abstract-${id}.jpg)`
-                }}>
+                <div className={styles.cardImg} style={
+                    (id < 10 ? {backgroundImage: `url(/src/assets/images/carousel/abstract-${id}.jpg)`} : {backgroundImage: `url(/src/assets/images/carousel/abstract-${id}.svg)`})
+
+                }>
 
                 </div>
             </div>

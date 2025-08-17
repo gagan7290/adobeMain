@@ -5,6 +5,7 @@ import skyline from "../../assets/images/skyline.webp"
 import cloud from "../../assets/images/cloud1.webp"
 import cloudAtBack from "../../assets/images/cloudback.webp"
 import moon from "../../assets/images/mooon.webp"
+import { useRef , useEffect} from "react";
 
 function HeroText({ children, highlight, color, from, to }) {
     if (!highlight) {
@@ -29,21 +30,24 @@ function HeroText({ children, highlight, color, from, to }) {
 }
 
 
-function HeroIllus(){
+function HeroIllus({isFirstRender}){
+
+
     return (
-        <div className={styles.heroIllus}>
-            <img src={hotAirBaloon} alt="" className={`${styles.hotAirBaloon} ${styles.heroImg}`}/>
-            <img src={skyline} className={`${styles.skyline}  ${styles.heroImg}`}/>
-            <img src={cloud} alt="" className={`${styles.cloud} ${styles.heroImg}`}/>
-            <img src={cloud} alt="" className={`${styles.cloud2} ${styles.heroImg}`}/>
-            <img src={cloudAtBack} alt="" className={`${styles.cloud2} ${styles.heroImg}`}/>
-            <img src={moon} alt="" className={`${styles.moon} ${styles.heroImg}`}/>
+        <div className={styles.heroIllus} style={{ "--scale-animation-delay": isFirstRender ? "0.8s" : "0s" }}>
+            <img src={hotAirBaloon} alt="Hot air balloon" className={`${styles.hotAirBaloon} ${styles.heroImg}`}/>
+            <img src={skyline} alt="City skyline" className={`${styles.skyline}  ${styles.heroImg}`}/>
+            <img src={cloud} alt="Cloud" className={`${styles.cloud} ${styles.heroImg}`}/>
+            <img src={cloudAtBack} alt="Cloud in the back" className={`${styles.cloud2} ${styles.heroImg}`}/>
+            <img src={cloud} alt="Another cloud" className={`${styles.cloud3} ${styles.heroImg}`}/>
+            <img src={moon} alt="Moon" className={`${styles.moon} ${styles.heroImg}`}/>
         </div>
     )
 }
 
 
-export default function Hero(){
+
+export default function Hero({isFirstRender}){
     return (
         <div className={styles.heroContainer}>
             <div className={styles.heroContent}>
@@ -63,7 +67,7 @@ export default function Hero(){
                     <Button btnText={"Watch Demo"}/>
                 </div>
             </div>
-            <HeroIllus/>
+            <HeroIllus isFirstRender={isFirstRender}/>
         </div>
     )
 }
