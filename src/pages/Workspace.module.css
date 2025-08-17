@@ -1,0 +1,125 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) 1.2fr;
+  gap: 20px;
+  padding: 16px 24px 28px;
+}
+
+.panel {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.left {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  padding: 14px;
+}
+
+.right {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  opacity: .85;
+}
+
+.askBox {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.askArea {
+  width: 100%;
+  resize: vertical;
+  min-height: 140px;
+  max-height: 240px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  color: var(--clr-text-primary, #e8ecf3);
+  padding: 12px 14px;
+  outline: none;
+}
+
+.rowChips {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+  user-select: none;
+  opacity: .8;
+}
+.chipActive { background: rgba(120, 220, 150, .18); border-color: rgba(120,220,150,.3); }
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 0;
+  background: #6bb7ff;
+  box-shadow: 0 6px 18px rgba(85,160,255,.35);
+  color: #021126;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.answer, .sources, .audio {
+  padding: 12px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(120, 220, 150, .35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  opacity: .7;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid rgba(255,255,255,.12);
+  opacity: .7;
+}

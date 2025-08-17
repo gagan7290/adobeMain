@@ -1,0 +1,18 @@
+.wrap{
+  display: grid; gap: .8rem;
+}
+
+.cta{
+  all: unset;
+  background: hsla(205, 91%, 65%, 1);
+  color: white;
+  padding: .7rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+}
+.cta:disabled{ opacity: .5; cursor: not-allowed; }
+
+.status{ opacity: .7; font-size: .95rem; }
+.hint{ opacity: .6; font-size: .9rem; }
