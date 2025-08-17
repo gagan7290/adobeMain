@@ -65,6 +65,18 @@
 .hotAirBaloon{
     height: 800px;
     transform: translateY(-15%);
+    animation: swingingBaloon 8s alternate infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes swingingBaloon {
+    0%{
+        transform-origin: 50% 20%;
+        transform: rotateZ(-2deg);
+    }
+
+    100%{
+        transform: rotateZ(6deg);
+    }
 }
 
 .skyline{
@@ -76,13 +88,35 @@
 
 .cloud{
     height: 800px;
-    transform: translate(0, -50%);
+    /* transform: translate(0, -50%); */
+    animation: movingCloudXOnly 10s alternate infinite cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+@keyframes movingCloudXOnly {
+    from{
+        transform: translate(-1%, -50%);
+    }
+    to{
+        transform: translate(1%, -50%);
+    }
 }
 
 .cloud2{
     height: 900px;
-    transform: translate(0, -20%);
+    transform: translate(-1%, -20%);
+    animation: movingCloudXY 8s alternate infinite cubic-bezier(0.12, 0, 0.39, 0);
+    animation-delay: 2s;
 }
+
+@keyframes movingCloudXY{
+    from{
+        transform: translate(-1%, -20%);
+    }
+    to{
+        transform: translate(1%, -22%);
+    }
+}
+
 
 .moon{
     height: 500px;
