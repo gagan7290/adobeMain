@@ -9,7 +9,7 @@ import { GridIcon, StackedIcon } from "../svgicons/switchDisplay"
 
 
 function Cards(){
-    return Array(27).fill(0).map((_, index) => <Card id={(index)%9+1}/>)
+    return Array(27).fill(0).map((_, index) => <Card id={(index)%13+1}/>)
 }
 
 
