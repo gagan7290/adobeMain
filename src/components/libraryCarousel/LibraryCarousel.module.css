@@ -22,8 +22,8 @@
 }
 
 .card {
-    height: 400px;
-    min-width: 280px;
+    height: 40vh;
+    min-width: 14vw;
     animation-name: changePerspective;
     /* animation-duration: 1s; */
     animation-iteration-count: 1;
@@ -112,13 +112,13 @@
 }
 
 .cardTitle{
-    font-size: 28px;
+    font-size: var(--font-size-md);
     font-family: var(--ff-headings);
 }
 
 .cardDate{
     font-family: var(--ff-component-content);
-    font-size: 20px;
+    font-size: var(--font-size-base);
 }
 
 
@@ -129,6 +129,7 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+    margin-top: 3rem;
 }
 
 .arrow{
