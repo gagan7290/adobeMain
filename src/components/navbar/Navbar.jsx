@@ -20,8 +20,8 @@ function ToggleTheme({ themeSelected, setThemeSelected }) {
                 
             </div>
             <div
-                className={`${styles.darkTheme} ${themeSelected === "workspaceTheme" ? styles.selected : ""}`}
-                onClick={() => setThemeSelected("workspaceTheme")}
+                className={`${styles.darkTheme} ${themeSelected === "purpleTheme" ? styles.selected : ""}`}
+                onClick={() => setThemeSelected("purpleTheme")}
             >
                 <DarkThemeIcon />
                 
@@ -32,7 +32,7 @@ function ToggleTheme({ themeSelected, setThemeSelected }) {
 
 const navItemsArr = [
     { name: "Home", path: "/" },
-    { name: "Workspace", path: "/Workspace" },
+    { name: "Library", path: "/library" },
     { name: "Item 3", path: "/item3" },
     { name: "Item 4", path: "/item4" },
 ];

@@ -47,7 +47,7 @@
 
 }
 
-html[data-theme='workspaceTheme'] {
+html[data-theme='purpleTheme'] {
   --clr-bg: rgb(44	23	110	);
   --clr-text-primary: white;
   --clr-text-secondary : 255, 82%, 65%;

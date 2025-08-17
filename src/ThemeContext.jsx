@@ -10,8 +10,8 @@ export const ThemeProvider = ({children}) => {
     useEffect(() => {
         const root = window.document.documentElement;
         console.log("theme changed!!!")
-        if (theme === 'workspaceTheme') {
-          root.setAttribute('data-theme', 'workspaceTheme');
+        if (theme === 'purpleTheme') {
+          root.setAttribute('data-theme', 'purpleTheme');
         } else {
           root.removeAttribute('data-theme');
         }
