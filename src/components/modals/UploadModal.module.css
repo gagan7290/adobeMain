@@ -6,7 +6,9 @@
   place-items: center;
   z-index: 1000;
   font-family: var(--ff-content);
+
 }
+
 
 .modal {
   width: max(35%, 400px);
@@ -25,7 +27,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  animation: genie 0.6s 1 cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+@keyframes genie {
+  from{
+    transform: translateX(-50%) scale(0);
+  }
+  to{
+    transform: translateX(0%) scale(1);
+  }
+}
+
 
 .header {
   display: flex;
@@ -160,3 +173,4 @@
   opacity: 0.7;
   line-height: 1.5;
 }
+
