@@ -1,7 +1,6 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import "./pdf.css";
 
-
 const PdfViewer = forwardRef(function PdfViewer(
   { url, fileName = "Document.pdf", onReady, onTextSelected, onOpeningChange },
   ref
@@ -9,6 +8,7 @@ const PdfViewer = forwardRef(function PdfViewer(
   const divId = useRef(`adobe-view-${Math.random().toString(36).slice(2)}`);
   const adobeViewRef = useRef(null);
   const viewerRef = useRef(null);
+  const overlayRef = useRef(null); 
 
   useImperativeHandle(ref, () => ({
     async goTo(page = 1, yRatio = 0) {
@@ -20,7 +20,36 @@ const PdfViewer = forwardRef(function PdfViewer(
         console.warn("gotoLocation failed:", e);
       }
     },
+    async highlightHits(bands = []) {
+      ensureOverlay();
+      renderBands(bands);
+    },
+    async clearHighlights() {
+      if (overlayRef.current) overlayRef.current.innerHTML = "";
+    },
   }));
+
+  function ensureOverlay() {
+    if (!overlayRef.current) {
+      const host = document.getElementById(divId.current);
+      const ov = document.createElement("div");
+      ov.className = "pdf-overlay";
+      host?.appendChild(ov);
+      overlayRef.current = ov;
+    }
+  }
+  function renderBands(bands) {
+    if (!overlayRef.current) return;
+    overlayRef.current.innerHTML = "";
+    bands.forEach((b, i) => {
+      const el = document.createElement("div");
+      el.className = "pdf-highlight-band";
+      el.style.top = `${Math.max(0, Math.min(100, (b?.y ?? 0) * 100))}%`;
+      el.style.background = b?.color || "rgba(255,215,0,.45)"; 
+      el.title = `p.${b?.page || "?"}`;
+      overlayRef.current.appendChild(el);
+    });
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -90,10 +119,7 @@ const PdfViewer = forwardRef(function PdfViewer(
         if (cancelled) return;
         viewerRef.current = viewer;
 
-        try {
-          await viewer.getAPIs();
-        } catch {
-        }
+        try { await viewer.getAPIs(); } catch {}
         onOpeningChange?.(false);
         onReady?.();
 
@@ -102,17 +128,17 @@ const PdfViewer = forwardRef(function PdfViewer(
             window.AdobeDC.View.Enum.CallbackType.EVENT_LISTENER,
             async (event) => {
               if (event?.type === window.AdobeDC.View.Enum.Events.TEXT_SELECTED) {
+                let text = "";
                 try {
                   const apis = await viewer.getAPIs();
                   const result = await apis.getSelectedContent();
-                  const text =
-                    typeof result === "string"
-                      ? result
-                      : (result?.data || result?.selectedText || "").toString();
-                  if (text?.trim()) onTextSelected?.(text.trim());
+                  text = typeof result === "string"
+                    ? result
+                    : (result?.data || result?.selectedText || "");
                 } catch (e) {
-                  console.warn("getSelectedContent failed:", e);
+                  text = event?.data?.selectedText || "";
                 }
+                if (text && text.trim()) onTextSelected?.(text.trim());
               }
             },
             { enablePDFAnalytics: false }
@@ -129,11 +155,8 @@ const PdfViewer = forwardRef(function PdfViewer(
     }
 
     openPdf();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [url]); 
+    return () => { cancelled = true; };
+  }, [url, fileName]);
 
   return <div id={divId.current} className="pdf-host" />;
 });

@@ -149,7 +149,6 @@
   position: relative;
   top: 10px;
   color: var(--clr-text-primary);
-  /* box-shadow: 0 6px 18px rgba(85, 160, 255, 0.35); */
 }
 
 
@@ -174,3 +173,18 @@
   line-height: 1.5;
 }
 
+.browseLink {
+  color: hsla(var(--clr-text-secondary));
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.altBrowseRow {
+  margin-top: .5rem;
+  text-align: center;
+  opacity: .85;
+}
+
+.subtle {
+  opacity: .7;
+}

@@ -30,7 +30,6 @@
   grid-template-rows: auto 1fr;
   gap: 14px;
   padding: 14px;
-  /* backdrop-filter: blur(2px); */
 }
 
 .right {
@@ -43,8 +42,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 12px 16px; */
-
   letter-spacing: .02em;
   opacity: .85;
   font-family: var(--ff-headings);
@@ -92,7 +89,6 @@
   font-family: var(--ff-component-content);
   width: max-content;
   font-weight: 600;
-  /* opacity: .8; */
 }
 
 .chipActive { 
@@ -165,4 +161,25 @@
   font-family: var(--ff-content);
   opacity: 0.5;
   font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btnGhost {
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,0.04);
+  color: var(--clr-text-primary);
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btnGhost:hover {
+  border-color: rgba(120,220,150,.35);
+  background: rgba(255,255,255,0.06);
 }
