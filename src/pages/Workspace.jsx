@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Workspace.module.css";
 import PdfViewer from "../components/pdf/PdfViewer.jsx";
 import { answerSmart, listVoices, buildAudioUrl } from "../lib/api.js";
-
+import VoiceSelect from "../components/voiceControl/voiceControl.jsx";
 function Chip({ active, onClick, children }) {
   return (
     <div
@@ -168,9 +168,9 @@ export default function Workspace() {
             <button className={styles.chip} onClick={openLocalPdf}>
               Open PDF
             </button>
-            <div className={styles.mono} style={{ opacity: 0.6 }}>
+            {/* <div className={styles.mono} style={{ opacity: 0.6 }}>
               Tip: select text in the PDF → it auto-appears in “Ask”.
-            </div>
+            </div> */}
             {isOpening && <div className={styles.badge}>Opening…</div>}
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function Workspace() {
                 Narrate
               </Chip>
 
-              <select
+              {/* <select
                 disabled={!narrate}
                 value={voice}
                 onChange={(e) => setVoice(e.target.value)}
@@ -217,7 +217,14 @@ export default function Workspace() {
                     );
                   })
                 )}
-              </select>
+              </select> */}
+
+              <VoiceSelect
+                narrate={narrate}
+                voice={voice}
+                setVoice={setVoice}
+                voices={voices}
+              />
             </div>
           </div>
 
@@ -238,7 +245,7 @@ export default function Workspace() {
           <div className={styles.headerRow} style={{ padding: 0, marginBottom: 8 }}>
             <div>Answer</div>
           </div>
-          <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.6, opacity: 0.92 }}>
+          <div className={styles.defaultText} style={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>
             {answer || "Your answer will appear here."}
           </div>
         </div>
@@ -251,7 +258,7 @@ export default function Workspace() {
             {sourcesCards.length ? (
               sourcesCards
             ) : (
-              <div style={{ opacity: 0.7 }}>No sources yet.</div>
+              <div className={styles.defaultText}>No sources yet.</div>
             )}
           </div>
         </div>
@@ -263,7 +270,7 @@ export default function Workspace() {
           {audioUrl ? (
             <audio src={audioUrl} controls style={{ width: "100%" }} />
           ) : (
-            <div style={{ opacity: 0.7 }}>No audio yet.</div>
+            <div className={styles.defaultText}>No audio yet.</div>
           )}
         </div>
       </div>

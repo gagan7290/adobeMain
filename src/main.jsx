@@ -6,6 +6,8 @@ import Library from './components/library/library.jsx';
 import Workspace from './pages/Workspace.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from './ThemeContext.jsx';
+import VoiceSelect from './components/voiceControl/voiceControl.jsx';
+
 
 const routes = createBrowserRouter([
   {
@@ -14,6 +16,7 @@ const routes = createBrowserRouter([
     children: [
       { path : "library", element : <Library/> },
       { path : "workspace", element: <Workspace/> },
+      { path : "test", element: <VoiceSelect/>},
     ]
   }
 ]);
