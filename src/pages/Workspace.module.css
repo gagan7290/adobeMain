@@ -83,7 +83,8 @@
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.08);
-  background: hsla(var(--clr-text-secondary));
+  background: rgba(120, 220, 150, .18); 
+
   color: var(--clr-text-primary);
   cursor: pointer;
   user-select: none;
@@ -94,7 +95,10 @@
   /* opacity: .8; */
 }
 
-.chipActive { background: rgba(120, 220, 150, .18); border-color: rgba(120,220,150,.3); }
+.chipActive { 
+  background: hsla(var(--clr-text-secondary));
+  border-color: rgba(120,220,150,.3); 
+}
 
 .btn {
   padding: 10px 16px;
