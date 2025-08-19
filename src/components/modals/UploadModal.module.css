@@ -115,7 +115,7 @@
   font-size: var(--font-size-lg);
   font-weight: 700;
   display: block;
-  width: max-content;
+  /* width: max-content; */
   margin-bottom: 0.5rem;
 }
 

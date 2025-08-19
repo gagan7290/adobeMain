@@ -46,7 +46,7 @@ export default function Home() {
       {/* WHY */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={styles.container}>
-          <h2 className={styles.h2}>Why Prism</h2>
+          <h2 className={styles.mainHeading}>Why Prism</h2>
           <p className={styles.lead}>
             Minimal UI, maximum signal. Prism connects the dots across your PDFs, highlights what
             matters, and speaks the answer.
@@ -72,7 +72,7 @@ export default function Home() {
       {/* HOW */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={styles.container}>
-          <h2 className={styles.h2}>How it works</h2>
+          <h2 className={styles.workTitle}>How it works</h2>
           <ol className={styles.steps} aria-label="How Prism works">
             <li style={{ background: "transparent", border: "1px solid rgba(255,255,255,.06)" }}>
               <span>1</span> Drop PDFs (or a .zip). Local-friendly indexing.
@@ -84,7 +84,7 @@ export default function Home() {
               <span>3</span> Get an answer with citations, highlights, and jump-links.
             </li>
             <li style={{ background: "transparent", border: "1px solid rgba(255,255,255,.06)" }}>
-              <span>4</span> Tap <em>Insights</em> for crisp bullets or enable <em>Narrate</em>.
+              <span>4</span> Tap Insights for crisp bullets or enable Narrate.
             </li>
           </ol>
         </div>
@@ -94,8 +94,8 @@ export default function Home() {
       <section className={styles.section} ref={termRef} style={{ background: "none" }}>
         <div className={`${styles.container} ${styles.split}`}>
           <div className={styles.colText}>
-            <h2 className={styles.h2}>CLI that mirrors the app</h2>
-            <p className={styles.lead}>
+            <h2 className={styles.cliHeading}>CLI that mirrors the app</h2>
+            <p className={styles.cliLead}>
               Prefer keyboard? Use the same pipeline in a tiny CLI. Upload, ask, highlight, and
               generate narration — without leaving the terminal.
             </p>
@@ -118,8 +118,8 @@ export default function Home() {
       {/* CTA */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={`${styles.container} ${styles.center}`}>
-          <h2 className={styles.h2}>Beyond the page. Deeper insights.</h2>
-          <p className={styles.lead}>Start a focused session now.</p>
+          {/* <h2 className={styles.h2}>Beyond the page. Deeper insights.</h2> */}
+          <p className={styles.startLead}>Start a focused session now.</p>
           <Link to="/workspace" className={styles.ctaPrimary}>
             Start a New Session
           </Link>

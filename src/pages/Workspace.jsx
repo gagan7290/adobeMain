@@ -3,6 +3,7 @@ import styles from "./Workspace.module.css";
 import PdfViewer from "../components/pdf/PdfViewer.jsx";
 import { answerSmart, listVoices, buildAudioUrl, related, getInsights } from "../lib/api.js";
 import VoiceSelect from "../components/voiceControl/voiceControl.jsx";
+import GlassLoading from "../components/glassLoading/glassLoading.jsx";
 
 function Chip({ active, onClick, children, title }) {
   return (
@@ -270,7 +271,7 @@ export default function Workspace() {
             <div>Answer</div>
           </div>
           <div className={styles.defaultText} style={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>
-            {answer || "Your answer will appear here."}
+            {answer || <GlassLoading loaderCount={4}></GlassLoading>}
           </div>
         </div>
 
@@ -279,7 +280,7 @@ export default function Workspace() {
             <div>Sources</div>
           </div>
           <div className={styles.cards}>
-            {sourceChips.length ? sourceChips : <div className={styles.defaultText}>No sources yet.</div>}
+            {sourceChips.length ? sourceChips : <div className={styles.defaultText}><GlassLoading loaderCount={2}></GlassLoading></div>}
           </div>
         </div>
 
@@ -290,7 +291,7 @@ export default function Workspace() {
           {audioUrl ? (
             <audio src={audioUrl} controls style={{ width: "100%" }} />
           ) : (
-            <div className={styles.defaultText}>No audio yet.</div>
+            <div className={styles.defaultText}><GlassLoading loaderCount={2}></GlassLoading></div>
           )}
         </div>
       </div>
