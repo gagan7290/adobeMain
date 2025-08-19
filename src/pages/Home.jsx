@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import MacTerminal from "../components/terminal/MacTerminal.jsx";
@@ -22,7 +21,6 @@ export default function Home() {
   const termRef = useRef(null);
   const hasPlayed = useRef(false);
 
-  // Play terminal once it scrolls into view
   useEffect(() => {
     const el = termRef.current;
     if (!el) return;
@@ -43,7 +41,6 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      {/* WHY */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={styles.container}>
           <h2 className={styles.mainHeading}>Why Prism</h2>
@@ -69,7 +66,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={styles.container}>
           <h2 className={styles.workTitle}>How it works</h2>
@@ -90,7 +86,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CLI / TERMINAL */}
       <section className={styles.section} ref={termRef} style={{ background: "none" }}>
         <div className={`${styles.container} ${styles.split}`}>
           <div className={styles.colText}>
@@ -115,7 +110,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className={styles.section} style={{ background: "none" }}>
         <div className={`${styles.container} ${styles.center}`}>
           {/* <h2 className={styles.h2}>Beyond the page. Deeper insights.</h2> */}

@@ -22,7 +22,6 @@ export default function MacTerminal({
   const [lines, setLines] = useState([]);
   const [cursorOn, setCursorOn] = useState(true);
 
-  // Track timeouts for clean teardown
   const timersRef = useRef(new Set());
   const runningRef = useRef(false);
 
@@ -36,7 +35,6 @@ export default function MacTerminal({
     timersRef.current.clear();
   };
 
-  // Flatten the script to a simple sequence of steps
   const steps = useMemo(() => {
     const out = [];
     for (const s of script) {
@@ -46,13 +44,11 @@ export default function MacTerminal({
     return out;
   }, [script]);
 
-  // Cursor blink
   useEffect(() => {
     const id = window.setInterval(() => setCursorOn((c) => !c), 530);
     return () => window.clearInterval(id);
   }, []);
 
-  // Start typing once when `animate` becomes true
   useEffect(() => {
     if (!animate || runningRef.current) return;
 
@@ -72,7 +68,6 @@ export default function MacTerminal({
           const text = (s.kind === "cmd" ? "$ " : "") + s.text;
 
           if (prefersReduced) {
-            // Print instantly for reduced motion
             setLines((prev) => [...prev, text]);
           } else {
             await typeLine(text, setLines, typing, schedule);
@@ -92,7 +87,6 @@ export default function MacTerminal({
     return () => {
       clearTimers();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animate, steps, typing, pause, loop]);
 
   return (
@@ -115,7 +109,6 @@ export default function MacTerminal({
   );
 }
 
-/* ---------- helpers (plain JS, no types) ---------- */
 
 function sleep(ms, schedule) {
   return new Promise((resolve) => schedule(resolve, ms));

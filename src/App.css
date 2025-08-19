@@ -22,17 +22,13 @@ body{
   flex-direction: column;
 }
 
-/* Full viewport hero (minus any global margin/padding you apply elsewhere) */
 .heroSection {
   min-height: 100vh;
   display: grid;
   align-items: center;
-  /* keeps the hero artwork comfortably centered */
   padding-block: clamp(2rem, 6vh, 5rem);
 }
 
-/* Optional: consistent max width for below-the-fold content if your sections
-   don't already constrain themselves. */
 .homeMax {
   max-width: 1200px;
   margin-inline: auto;

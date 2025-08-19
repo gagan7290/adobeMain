@@ -1,4 +1,3 @@
-// src/main.jsx (App shell)
 import "./App.css";
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
@@ -7,7 +6,6 @@ import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import UploadModal from "./components/modals/UploadModal.jsx";
 
-// ⬇️ New: the scrolling sections that live under the hero
 import Home from "./pages/Home.jsx";
 
 function App() {
