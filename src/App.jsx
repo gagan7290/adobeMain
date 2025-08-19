@@ -1,27 +1,46 @@
+// src/main.jsx (App shell)
 import "./App.css";
 import { useState } from "react";
-import Hero from "./components/hero/Hero";
-import Navbar from "./components/navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
+
+import Navbar from "./components/navbar/Navbar";
+import Hero from "./components/hero/Hero";
 import UploadModal from "./components/modals/UploadModal.jsx";
+
+// ⬇️ New: the scrolling sections that live under the hero
+import Home from "./pages/Home.jsx";
 
 function App() {
   const location = useLocation();
-
   const [showUpload, setShowUpload] = useState(false);
 
   const handleStartSession = () => setShowUpload(true);
   const handleWatchDemo = () => {
-    window.open("https://www.youtube.com/results?search_query=pdf+insights+demo", "_blank");
+    window.open(
+      "https://www.youtube.com/results?search_query=pdf+insights+demo",
+      "_blank"
+    );
   };
+
+  const isHome = location.pathname === "/";
 
   return (
     <>
       <div className="mainContainer">
         <div className="navHeroContainer">
           <Navbar />
-          {location.pathname === "/" ? (
-            <Hero onStartSession={handleStartSession} onWatchDemo={handleWatchDemo} />
+
+          {isHome ? (
+            <>
+              {/* Existing hero */}
+              <Hero
+                onStartSession={handleStartSession}
+                onWatchDemo={handleWatchDemo}
+              />
+
+              {/* New: sections below hero (value props, how it works, terminal demo, CTA) */}
+              {/* <Home /> */}
+            </>
           ) : (
             <Outlet />
           )}
