@@ -9,6 +9,13 @@ body{
   padding: 1rem 0;
 }
 
+
+.heroParent{
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
 .navHeroContainer{
   height: 100vh;
   display: flex;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import "./pdf.css";
-
+import GlassPdf from "../glassPdf/glassPdf";
 const PdfViewer = forwardRef(function PdfViewer(
   { url, fileName = "Document.pdf", onReady, onTextSelected, onOpeningChange },
   ref
@@ -158,7 +158,7 @@ const PdfViewer = forwardRef(function PdfViewer(
     return () => { cancelled = true; };
   }, [url, fileName]);
 
-  return <div id={divId.current} className="pdf-host" />;
+  return <div id={divId.current} className="pdf-host" ><GlassPdf/></div>;
 });
 
 export default PdfViewer;

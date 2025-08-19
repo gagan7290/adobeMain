@@ -33,13 +33,17 @@ function App() {
           {isHome ? (
             <>
               {/* Existing hero */}
-              <Hero
+              {/* <Hero
                 onStartSession={handleStartSession}
                 onWatchDemo={handleWatchDemo}
-              />
+              /> */}
+
+              <div className="heroParent">
+                  <Hero/>
+              </div>
 
               {/* New: sections below hero (value props, how it works, terminal demo, CTA) */}
-              {/* <Home /> */}
+              <Home />
             </>
           ) : (
             <Outlet />
