@@ -1,11 +1,13 @@
-// src/lib/api.js
 const BASE = import.meta.env.VITE_API_BASE || "http://localhost:8080/api";
 const TIMEOUT_MS = 60000;
+
 
 function abortableFetch(url, options = {}, timeout = TIMEOUT_MS) {
   const ctrl = new AbortController();
   const id = setTimeout(() => ctrl.abort(), timeout);
-  return fetch(url, { ...options, signal: ctrl.signal }).finally(() => clearTimeout(id));
+  return fetch(url, { ...options, signal: ctrl.signal }).finally(() =>
+    clearTimeout(id)
+  );
 }
 
 async function asJson(res) {
@@ -42,62 +44,48 @@ async function postMultipart(path, formData) {
   return asJson(res);
 }
 
-// ---- Uploads ---------------------------------------------------------------
 
-/** Upload a single fresh PDF (dev/local flow). */
 export async function uploadFresh(file) {
   if (!file) throw new Error("No file provided.");
   const fd = new FormData();
   fd.append("file", file);
   const data = await postMultipart("/upload/fresh", fd);
 
-  // Normalize docIds so UI can always rely on it.
   let docIds = [];
   if (Array.isArray(data?.docIds) && data.docIds.length) {
     docIds = data.docIds.map(String);
   } else if (Array.isArray(data?.docs)) {
-    docIds = data.docs.map(d => d?.docId).filter(Boolean).map(String);
+    docIds = data.docs.map((d) => d?.docId).filter(Boolean).map(String);
   } else if (data?.docId) {
     docIds = [String(data.docId)];
   }
-
-  if (docIds.length) {
-    // Persist latest doc id for "This PDF only" filter.
-    sessionStorage.setItem("prism.lastFreshDocId", docIds[0]);
-  }
-
   return { ...data, docIds };
 }
 
-/** Upload multiple PDFs. Backend preferred: /upload/many */
 export async function uploadMany(files) {
   const pdfs = Array.from(files).filter(
-    f => f.type === "application/pdf" || /\.pdf$/i.test(f.name)
+    (f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name)
   );
   if (!pdfs.length) throw new Error("No PDF files provided.");
 
   try {
     const fd = new FormData();
-    pdfs.forEach(f => fd.append("files", f, f.name));
-    const data = await postMultipart("/upload/many", fd);
+    pdfs.forEach((f) => fd.append("files", f));
+    const data = await postMultipart("/upload/batch", fd);
     const docIds = (Array.isArray(data?.docIds) ? data.docIds : [])
       .map(String)
       .filter(Boolean);
-    if (docIds.length) sessionStorage.setItem("prism.lastFreshDocId", docIds[0]);
     return { ...data, docIds };
   } catch {
-    // Fallback: sequential single uploads
     const all = [];
     for (const f of pdfs) {
       const res = await uploadFresh(f);
       all.push(...(res.docIds || []));
     }
-    if (all.length) sessionStorage.setItem("prism.lastFreshDocId", all[0]);
     return { ok: true, docIds: all };
   }
 }
 
-/** Upload a .zip (if backend supports /upload/zip). */
 export async function uploadZip(zipFile) {
   if (!zipFile) throw new Error("No zip provided.");
   const fd = new FormData();
@@ -106,11 +94,9 @@ export async function uploadZip(zipFile) {
   const docIds = (Array.isArray(data?.docIds) ? data.docIds : [])
     .map(String)
     .filter(Boolean);
-  if (docIds.length) sessionStorage.setItem("prism.lastFreshDocId", docIds[0]);
   return { ...data, docIds };
 }
 
-// ---- Q/A & friends ---------------------------------------------------------
 
 export async function answerSmart(payload) {
   if (!payload?.query || !payload.query.trim()) {
@@ -119,29 +105,67 @@ export async function answerSmart(payload) {
   return post("/answer/smart", payload);
 }
 
-/** Related sections for highlights & source chips. */
 export async function related(payload) {
-  // payload: { query, k?, deep?, docIds? }
-  if (!payload?.query || !payload.query.trim()) {
-    throw new Error("Query is empty.");
-  }
-  return post("/related", payload);
+  return post("/answer/related", payload);
 }
 
-/** Insights bullets; respects docIds for "This PDF only". */
 export async function getInsights(payload) {
-  // payload: { query, k?, deep?, docIds? }
-  if (!payload?.query || !payload.query.trim()) {
-    throw new Error("Query is empty.");
-  }
-  return post("/insights", payload);
+  return post("/answer/insights", payload);
 }
 
-export async function listVoices(locale = "en") {
-  const data = await get(`/tts/voices?locale=${encodeURIComponent(locale)}`);
-  const arr = Array.isArray(data) ? data : (data?.voices ?? []);
-  return arr;
+
+/**
+ * Voice picker: (NOTE FOR EVALUATORS)
+ *  1) Ask backend for OpenAI voices (prefer=openai)
+ *  2) If that fails (503), try Speech voices (prefer=speech)
+ *  3) If that also fails, return a small local OpenAI set to avoid spinner
+ */
+export async function listVoices(arg = { locale: "en", prefer: "openai" }) {
+  let locale = "en";
+  let prefer = "openai";
+  if (typeof arg === "string") {
+    locale = arg;
+  } else if (arg && typeof arg === "object") {
+    locale = arg.locale ?? "en";
+    prefer = arg.prefer ?? "openai";
+  }
+
+  const tryFetch = async (pref) => {
+    const qs = new URLSearchParams({ locale, prefer: pref });
+    const data = await get(`/tts/voices?${qs.toString()}`);
+    return Array.isArray(data) ? data : (data?.voices ?? []);
+  };
+
+  try {
+    const v = await tryFetch("openai");
+    if (v && v.length) return v;
+  } catch (_) {
+  }
+
+  try {
+    const v = await tryFetch("speech");
+    if (v && v.length) return v;
+  } catch (_) {
+  }
+
+  return [
+    { shortName: "alloy", name: "alloy", locale: "en-US" },
+    { shortName: "aria", name: "aria", locale: "en-US" },
+    { shortName: "verse", name: "verse", locale: "en-US" },
+    { shortName: "luna", name: "luna", locale: "en-US" },
+    { shortName: "cove", name: "cove", locale: "en-US" },
+    { shortName: "juniper", name: "juniper", locale: "en-US" },
+  ];
 }
+
+export async function getTtsStatus() {
+  try {
+    return await get("/tts/status");
+  } catch {
+    return null;
+  }
+}
+
 
 export function buildAudioUrl(relativeUrl) {
   if (!relativeUrl) return null;

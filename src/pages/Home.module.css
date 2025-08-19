@@ -4,7 +4,6 @@
   padding-bottom: 96px;
 }
 
-/* Sections flow beneath the hero — hero itself stays 100vh in your layout */
 .section {
   padding: 24px 0 8px;
   background:
@@ -35,7 +34,6 @@
   font-size: var(--font-size-base);
 }
 
-/* 3-up features */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -63,7 +61,6 @@
   line-height: 1.55;
 }
 
-/* Steps */
 .steps {
   display: grid;
   gap: 12px;
@@ -101,7 +98,6 @@
   font-weight: 800;
 }
 
-/* Split with terminal */
 .split {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
@@ -120,7 +116,6 @@
   .colTerm { order: 2; }
 }
 
-/* CTAs */
 .row {
   display: flex;
   gap: 12px;
