@@ -8,7 +8,7 @@
     position: relative;
     top: 8%;
 }
-
+/* 
 .libraryTitle{
     position: absolute;
     padding: 2rem;
@@ -16,5 +16,5 @@
     left: 0;
     font-size: var(--font-size-xxl);
     font-family: var(--ff-headings);
-    color: hsla(var(--clr-text-secondary));
-}
+    color: hsla(var(--clr-surface));
+} */

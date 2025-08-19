@@ -19,9 +19,9 @@ function ToggleTheme({ themeSelected, setThemeSelected }) {
       </div>
       <div
         className={`${styles.darkTheme} ${
-          themeSelected === "purpleTheme" ? styles.selected : ""
+          themeSelected === "dark" ? styles.selected : ""
         }`}
-        onClick={() => setThemeSelected("purpleTheme")}
+        onClick={() => setThemeSelected("dark")}
       >
         <DarkThemeIcon />
       </div>

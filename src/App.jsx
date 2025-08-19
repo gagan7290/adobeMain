@@ -8,6 +8,20 @@ import UploadModal from "./components/modals/UploadModal.jsx";
 
 import Home from "./pages/Home.jsx";
 
+
+import { useEffect } from "react";
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+
+
 function App() {
   const location = useLocation();
   const [showUpload, setShowUpload] = useState(false);
@@ -25,6 +39,7 @@ function App() {
   return (
     <>
       <div className="mainContainer">
+        <ScrollToTop/>
         <div className="navHeroContainer">
           <Navbar />
 

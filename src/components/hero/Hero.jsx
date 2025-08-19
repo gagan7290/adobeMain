@@ -1,14 +1,24 @@
 import styles from "./Hero.module.css";
 import Button from "../button/Button";
-import hotAirBaloon from "../../assets/images/hotAirBaloon.webp";
-import skyline from "../../assets/images/skyline.webp";
-import cloud from "../../assets/images/cloud1.webp";
-import cloudAtBack from "../../assets/images/cloudback.webp";
-import moon from "../../assets/images/mooon.webp";
+
+import hotAirBaloonDark from "../../assets/images/darkHero/hotAirBaloon.webp";
+import skylineDark from "../../assets/images/darkHero/skyline.webp";
+import cloudDark from "../../assets/images/darkHero/cloud1.webp";
+import cloudAtBackDark from "../../assets/images/darkHero/cloudback.webp";
+import moon from "../../assets/images/darkHero/mooon.webp";
+
+import hotAirBaloonLight from "../../assets/images/lightHero/hotAirBaloon.webp";
+import skylineLight from "../../assets/images/lightHero/skyline.webp";
+import cloudLight from "../../assets/images/lightHero/cloud1.webp";
+import cloudAtBackLight from "../../assets/images/lightHero/cloudback.webp";
+import sun from "../../assets/images/lightHero/mooon.webp";
+
 import { useState } from "react";
 import UploadModal from "../modals/UploadModal.jsx";
 import DemoModal from "../modals/DemoModal.jsx";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../ThemeContext";
+
 
 function HeroText({ children, highlight, color, from, to }) {
   if (!highlight) return children;
@@ -18,7 +28,7 @@ function HeroText({ children, highlight, color, from, to }) {
       {words.map((word, index) => {
         if (index >= from && index <= to) {
           return (
-            <span key={index} style={{ color: color || "hsla(var(--clr-text-secondary))" }}>
+            <span key={index} style={{ color: color || "hsla(var(--clr-surface))" }}>
               {word}{" "}
             </span>
           );
@@ -30,17 +40,33 @@ function HeroText({ children, highlight, color, from, to }) {
 }
 
 function HeroIllus() {
+  const { theme: themeSelected } = useTheme();
+
+  if (themeSelected === "dark") {
+    return (
+      <div className={styles.heroIllus}>
+        <img src={hotAirBaloonDark} alt="" className={`${styles.hotAirBaloon} ${styles.heroImg}`} />
+        <img src={skylineDark} alt="" className={`${styles.skyline} ${styles.heroImg}`} />
+        <img src={cloudDark} alt="" className={`${styles.cloud} ${styles.heroImg}`} />
+        <img src={cloudDark} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
+        <img src={cloudAtBackDark} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
+        <img src={moon} alt="" className={`${styles.moon} ${styles.heroImg}`} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.heroIllus}>
-      <img src={hotAirBaloon} alt="" className={`${styles.hotAirBaloon} ${styles.heroImg}`} />
-      <img src={skyline} className={`${styles.skyline}  ${styles.heroImg}`} />
-      <img src={cloud} alt="" className={`${styles.cloud} ${styles.heroImg}`} />
-      <img src={cloud} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
-      <img src={cloudAtBack} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
-      <img src={moon} alt="" className={`${styles.moon} ${styles.heroImg}`} />
+      <img src={hotAirBaloonLight} alt="" className={`${styles.hotAirBaloon} ${styles.heroImg}`} />
+      <img src={skylineLight} alt="" className={`${styles.skyline} ${styles.heroImg}`} />
+      <img src={cloudLight} alt="" className={`${styles.cloud} ${styles.heroImg}`} />
+      <img src={cloudLight} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
+      <img src={cloudAtBackLight} alt="" className={`${styles.cloud2} ${styles.heroImg}`} />
+      <img src={sun} alt="" className={`${styles.moon} ${styles.heroImg}`} />
     </div>
   );
 }
+
 
 export default function Hero() {
   const [openUpload, setOpenUpload] = useState(false);

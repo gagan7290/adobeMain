@@ -2,7 +2,7 @@
   display: grid;
   gap: 56px;
   /* padding-bottom: 96px; */
-  background-color: rgb(18	29	14	);
+  background-color: var(--clr-bg-home2);
   font-family: var(--ff-content);
 }
 
@@ -20,12 +20,14 @@
 
 .center { text-align: center; }
 
+
+
 .mainHeading{
   margin-top: 3rem;
   font-family: var(--ff-headings);
   font-size: var(--font-size-xxxl);
   letter-spacing: .02em;
-  color: hsla(var(--clr-text-secondary));
+  color: hsla(var(--clr-surface));
   /* margin: 0 0 10px; */
 }
 
@@ -107,7 +109,7 @@
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: hsla(var(--clr-text-secondary));
+  background: hsla(var(--clr-surface));
 
   font-weight: 800;
   font-size: 13px;
@@ -156,7 +158,7 @@
   display: inline-block;
   padding: 11px 18px;
   border-radius: 999px;
-  background: hsla(var(--clr-text-secondary));
+  background: hsla(var(--clr-surface));
   color: #051128;
   /* font-weight: 800; */
   text-decoration: none;
@@ -176,7 +178,7 @@
 
 
 .ctaGhost{
-  border: 1px solid white;
+  border: 1px solid hsla(var(--clr-surface));
   display: flex;
   align-items: center;
   justify-content: center;

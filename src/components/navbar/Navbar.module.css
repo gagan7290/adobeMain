@@ -8,6 +8,7 @@
     font-size: var(--font-size-md);
     font-family: var(--ff-component-content);
     padding: 1rem;
+    z-index: 1000;
 }
 
 
@@ -16,7 +17,8 @@
     gap: 1rem;
     align-items: center;
     padding: 0.5rem 1rem;
-    background: rgba(30, 37, 67, 0.65);
+    /* background: hsla(var(--clr-text-secondary), 0.65); */
+    background-color: transparent;
     border-radius: 16px;
     backdrop-filter: blur(10.1px);
     -webkit-backdrop-filter: blur(10.1px);
@@ -26,7 +28,7 @@
 
 a{
     text-decoration: none;
-    color: white;
+    color: var(--clr-text-primary);
 }
 
 a:visited{
@@ -48,13 +50,17 @@ a:visited{
 }
 
 .pageCtrls > .toggleTheme > *{
-    transform: translateY(12%);
+    transform: translateY(10%);
     position: relative;
+}
+
+.selected{
+    height: min-content;
 }
 
 .selected::before{
     pointer-events: none;
-    transform: translate(-20%, -20%);
+    transform: translate(-20%, -20.5%);
     content: "";
     width: 40px;
     height: 40px;

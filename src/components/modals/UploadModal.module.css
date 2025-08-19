@@ -19,8 +19,8 @@
   padding: 2.5rem;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45),
               inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(6px);
-  background-color: var(--clr-bg);
+  backdrop-filter: blur(40px);
+  background-color: var(--clr-surface);
   color: #e8ecf3;
   position: relative;
 
@@ -120,7 +120,7 @@
 }
 
 .uploadText .highlightText{
-  color: hsla(var(--clr-text-secondary));
+  color: hsla(var(--clr-surface));
 }
 
 .fileUpload .highlightText:hover {
@@ -140,7 +140,7 @@
   padding: 0.8rem 1.5rem;
   border-radius: 1.5rem;
   border: 0;
-  background: hsla(var(--clr-text-secondary));
+  background: hsla(var(--clr-surface));
   color: #021126;
   font-weight: 700;
   align-self: center;

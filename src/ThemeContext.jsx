@@ -5,15 +5,15 @@ const ThemeContext = createContext();
 
 
 export const ThemeProvider = ({children}) => {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState("dark");
 
     useEffect(() => {
         const root = window.document.documentElement;
         console.log("theme changed!!!")
-        if (theme === 'purpleTheme') {
-          root.setAttribute('data-theme', 'purpleTheme');
-        } else {
+        if (theme === 'dark') {
           root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', 'light');
         }
       }, [theme]);
 

@@ -41,14 +41,17 @@ export default function LibraryCarousel(){
         <div className={styles.mainContainer}>
 
             <div className={styles.topBar}>
+                <div className={styles.libraryTitle}>
+                    Library
+                </div>
                 <div className={styles.searchBar}>
                     <SearchIcon className={styles.searchIcon}/>
                     <input type="text"/>
                 </div>
-                <div className={styles.switchCardPresentation}>
+                {/* <div className={styles.switchCardPresentation}>
                     <div className={gridOrStack === "grid" ? styles.selected : ""} onClick={() => toggleDisplay()}><GridIcon/></div>
                     <div className={gridOrStack === "stack" ? styles.selected : ""} onClick={() => toggleDisplay()}><StackedIcon/></div>
-                </div>
+                </div> */}
             </div>
 
             {gridOrStack === "stack" ? 

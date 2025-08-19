@@ -240,12 +240,13 @@ export default function Workspace() {
             <div>Ask your document</div>
             <div className={styles.rowChips}>
               <Chip active={deep} onClick={() => setDeep((d) => !d)}>Deep</Chip>
-              <Chip active={narrate} onClick={() => setNarrate((n) => !n)}>Narrate</Chip>
-              <VoiceSelect narrate={narrate} voice={voice} setVoice={setVoice} voices={voices} />
+
               <Chip active={hlOn} onClick={toggleHighlights} title="Toggle related highlights">
                 {relBusy ? "Finding…" : "Highlights"}
               </Chip>
               <Chip onClick={onInsights} title="Generate insights for the current context">Insights</Chip>
+              <Chip active={narrate} onClick={() => setNarrate((n) => !n)}>Narrate</Chip>
+              <VoiceSelect narrate={narrate} voice={voice} setVoice={setVoice} voices={voices} />
               <Chip active={!!onlyThisDoc} onClick={() => setOnlyThisDoc(v => !v)} title="Restrict to the current uploaded PDF">
                 This PDF only
               </Chip>

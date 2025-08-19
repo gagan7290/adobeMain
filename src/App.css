@@ -1,5 +1,7 @@
 body{
-  background-color: var(--clr-bg);
+  background: linear-gradient(16deg,var(--clr-gradient-ClrOne) 0%, var(--clr-gradient-ClrTwo) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .mainContainer{
@@ -7,6 +9,7 @@ body{
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+  
 }
 
 
@@ -16,8 +19,10 @@ body{
   overflow: hidden;
 }
 
+
+
 .navHeroContainer{
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }

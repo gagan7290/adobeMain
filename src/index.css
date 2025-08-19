@@ -36,14 +36,20 @@
   --font-size-xxxl:  clamp(4.44rem, 5.38vw + 2.8rem, 8rem);
 
   --clr-bg: rgb(40	41 105	);
+  --clr-gradient-ClrOne: #221E51;
+  --clr-gradient-ClrTwo: #242362;
   --clr-surface: 112,44%,58%;
+  --clr-bg-home2 : rgb(18	29	14	);
   --clr-text-primary: rgb(255 255 255);
   --clr-text-secondary: 112,44%,58%;
+  --clr-workspace-headings: hsla(112,44%,58%);
+
 
   --clr-accent-1: rgb(114	71	236	);
   --clr-accent-2: rgb(223	54	92);
   --clr-accent-3: rgb(244	198	90);
   --clr-accent-4: 205, 91%, 65%;
+
 
 }
 
@@ -51,9 +57,21 @@ html[data-theme='purpleTheme'] {
   --clr-bg: rgb(44	23	110	);
   --clr-text-primary: white;
   --clr-text-secondary : 255, 82%, 65%;
+
   /* --clr-surface: 342, 97%, 54%; */
 }
 
+
+html[data-theme="light"]{
+  --clr-bg: #CED7C9;
+  --clr-gradient-ClrOne: #CED7C9;
+  --clr-bg-home2 : white;
+  --clr-gradient-ClrTwo: #73A5C2;
+  --clr-text-primary: rgb(0 0 0);
+  --clr-text-secondary: 0, 0%, 100%;
+  --clr-workspace-headings: black;
+  /* --clr-surface: 189, 33%, 92%; */
+}
 
 body{
   transition: background-color 0.3s ease, color 0.3s ease;
